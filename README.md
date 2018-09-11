@@ -10,20 +10,24 @@ Code execution upon unhandled exceptions <br>
 Code execution the first time an app runs on client's device<br><br><br>
 
 <b>Bring into your project</b><br>
-<i>Add this into your root build.gradle file:</i><br>
-<code>
- allprojects {
+Add this into your root build.gradle file:<br>
+```
+ allprojects {		
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
 
-</code>
+```
+Add this into your module build.gradle file:<br>
+```
+ allprojects {
+dependencies {
+	        implementation 'com.github.Gaineyj0349:JumpStart:fe17bd6b58'
+	}
+```
 
 How to easily programmatically ask for permissions:<br>
 
 
-<code>
- 
-</code>
