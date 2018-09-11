@@ -1,5 +1,5 @@
 # JumpStart
-[![](https://jitpack.io/v/Gaineyj0349/JumpStart.svg)](https://jitpack.io/#Gaineyj0349/JumpStart)
+
 
 <b>MIN SDK: 17</b><br>
 <b>Written in Java - can be used in Kotlin and Java based Android projects</b><br><br>
@@ -9,7 +9,7 @@ Programmatically requesting permissions<br>
 Code execution upon unhandled exceptions <br>
 Code execution the first time an app runs on client's device<br><br><br>
 
-<b>Bring into your project</b><br>
+<b>Bring into your project</b><br><br>
 Add this into your root build.gradle file:<br>
 ```
  allprojects {		
@@ -24,10 +24,16 @@ Add this into your module build.gradle file:<br>
 ```
  allprojects {
 dependencies {
-	        implementation 'com.github.Gaineyj0349:JumpStart:fe17bd6b58'
+	       implementation 'com.github.Gaineyj0349.JumpStart:jslib:8c7bdd6567'
 	}
 ```
 
-How to easily programmatically ask for permissions:<br>
+<b>Permissions</b>:<br>
+Since api 21 we must programmatically ask for permissions with dangerous permissions. This library makes this process easy.
+<br><br>
 
+Create an inner class that implements the PermissionsDirective interface like this:<br>
+```
+
+```
 
