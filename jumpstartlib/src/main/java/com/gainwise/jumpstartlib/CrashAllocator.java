@@ -48,7 +48,7 @@ public class CrashAllocator {
 
     //When constructing a CrashAllocator instance, pass an anonymous or named object implementing this
     //interface
-    interface Crashable {
+    public interface Crashable {
         void executeOnCrash();
     }
 

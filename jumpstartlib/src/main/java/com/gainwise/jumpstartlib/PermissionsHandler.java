@@ -104,7 +104,7 @@ public class PermissionsHandler extends AppCompatActivity {
     //in the calling class - an anonymous or named object will implement this interface
     //and pass it via the constructor of the PermissionsHelper object when its created
     //all of the details of the permission being requested are in this
-    interface PermissionsDirective{
+    public interface PermissionsDirective{
         String[] permissionsToRequest();
         int requestCode();
         Activity withActivity();

@@ -31,7 +31,7 @@ public class FirstRunHandler {
 
     //When constructing a FirstRunHandler instance, pass an anonymous or named object implementing this
     //interface
-    interface FirstRunner{
+    public interface FirstRunner{
         void execute();
     }
 
