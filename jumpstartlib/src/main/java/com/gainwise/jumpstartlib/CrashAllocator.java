@@ -8,11 +8,7 @@ package com.gainwise.jumpstartlib;
 
  */
 
-//When constructing a CrashAllocator instance, pass an anonymous or named object implementing this
-//interface
-interface Crashable {
-    void executeOnCrash();
-}
+
 
 
 public class CrashAllocator {
@@ -50,6 +46,11 @@ public class CrashAllocator {
     };
 
 
+    //When constructing a CrashAllocator instance, pass an anonymous or named object implementing this
+    //interface
+    interface Crashable {
+        void executeOnCrash();
+    }
 
     //this successfully executes code and rethrows the exception back to the default exception handler.
 

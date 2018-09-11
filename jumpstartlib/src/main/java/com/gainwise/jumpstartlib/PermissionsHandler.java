@@ -22,16 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-//in the calling class - an anonymous or named object will implement this interface
-//and pass it via the constructor of the PermissionsHelper object when its created
-//all of the details of the permission being requested are in this
-interface PermissionsDirective{
-    String[] permissionsToRequest();
-    int requestCode();
-    Activity withActivity();
-    void executeOnPermissionGranted();
-    void executeOnPermissionDenied();
-}
+
 
 public class PermissionsHandler extends AppCompatActivity {
 
@@ -48,6 +39,7 @@ public class PermissionsHandler extends AppCompatActivity {
         this.permissions = permissions;
         this.requestCode = requestCode;
     }
+
 
     //this method will return true or false if permissions are granted or not
     boolean needPermissions(String[] permissions){
@@ -109,5 +101,15 @@ public class PermissionsHandler extends AppCompatActivity {
         Toast.makeText(context, "Go to Permissions to Grant Storage", Toast.LENGTH_LONG).show();
     }
 
+    //in the calling class - an anonymous or named object will implement this interface
+    //and pass it via the constructor of the PermissionsHelper object when its created
+    //all of the details of the permission being requested are in this
+    interface PermissionsDirective{
+        String[] permissionsToRequest();
+        int requestCode();
+        Activity withActivity();
+        void executeOnPermissionGranted();
+        void executeOnPermissionDenied();
+    }
 
 }

@@ -12,12 +12,6 @@ import android.content.SharedPreferences;
 
 
 
-//When constructing a FirstRunHandler instance, pass an anonymous or named object implementing this
-//interface
-interface FirstRunner{
-    void execute();
-}
-
 public class FirstRunHandler {
 
 
@@ -34,6 +28,13 @@ public class FirstRunHandler {
         }
 
     }
+
+    //When constructing a FirstRunHandler instance, pass an anonymous or named object implementing this
+    //interface
+    interface FirstRunner{
+        void execute();
+    }
+
 }
 
 
