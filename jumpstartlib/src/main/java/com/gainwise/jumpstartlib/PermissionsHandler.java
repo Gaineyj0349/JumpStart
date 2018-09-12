@@ -27,7 +27,7 @@ import android.widget.Toast;
 public class PermissionsHandler extends AppCompatActivity {
 
     //declare variables
-   public PermissionsDirective directive;
+    PermissionsDirective directive;
     Activity activity;
     String permissions[];
     int requestCode;
@@ -110,6 +110,11 @@ public class PermissionsHandler extends AppCompatActivity {
         Activity withActivity();
         void executeOnPermissionGranted();
         void executeOnPermissionDenied();
+    }
+
+    //getter for checking permissions
+    public String[] getPermissions() {
+        return permissions;
     }
 
 }
