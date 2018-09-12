@@ -29,11 +29,45 @@ Add this into your module build.gradle file:<br>
 }
 ```
 
+
+<b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
+<br><br>
+
+Normally we like to capture exceptions in a try/catch block but sometimes we can not always anticipate when exceptions will be thrown. 
+This can result in the app crashing, and when the app crashes from an unhandled exception - no lifecycle methods are called. So,
+if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this. It is very important to know that as long as this object is a classwide object (not declared within a lifecycle method) only one is requred per each process. If I have 10 activities, I only need to declare this once in the first activity and it will cover everything in that particular thread. Only when you specifically change processes (either programmatically or in the manifest) then you will need to create another one. Note that even if that first Activity is destroyed it will persist (at least until the android system needs to reclaim that memory):
+```
+    CrashAllocator allocator = new CrashAllocator(new CrashAllocator.Crashable() {
+        @Override
+        public void executeOnCrash() {
+            //custom code here
+        }
+    });
+```
+<br>This wraps up the Unhandled Exceptions part of this library.<br><br>
+
+
+<b><U>FIRST RUN CODE</U></b>:<br>
+<br><br>
+
+This simply makes it easy to execute code upon the first run of the app itself. This uses shared preferences. This is consructed within the onCreate() method of the launcher activity:
+```
+
+FirstRunHandler fHandler = new FirstRunHandler(this, new FirstRunHandler.FirstRunner() {
+    @Override
+    public void execute() {
+        //custom code here
+    }
+});
+```
+<br>This wraps up the Unhandled Exceptions part of this library.<br><br>
+
+
 <b><U>PERMISSIONS</U></b>:<br>
 Since api 21 we must programmatically ask for permissions with dangerous permissions. This library makes this process very easy.
 <br><br>
 
-From the calling activity, create an inner class that implements the PermissionsDirective interface and implement the interface's members. Then within the implemented methods, put in your own code specific to the permissions to request, as well as the actions to take if the permissions are granted or denied. The method names are self descriptive in terms of what they do:<br>
+We will first create an inner class that implements PermissionsDirective interface and implement the interface's members. This object has all the necessary data including the permissions to request, as well as the actions to take upon approval or denial of permissions. The method names are self descriptive in terms of what they do:<br>
 ```
     class PermissionsHelper implements PermissionsHandler.PermissionsDirective{
 
@@ -123,12 +157,5 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 This wraps up the Permissions part of this library.
-
-<b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
-<br><br>
-
-Normally we like to capture exceptions in a try/catch block but sometimes we can not always anticipate when exceptions will be thrown. 
-This can result in the app crashing, and when the app crashes from an unhandled exception - no lifecycle methods are called. So,
-if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this like so:
 
 
