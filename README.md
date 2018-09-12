@@ -91,7 +91,7 @@ In the activity, create a classwide (not within a lifecycle method) object of ty
 PermissionsHandler pHandler = new PermissionsHandler(new PermissionsHelper());
 ```
 <br>
-Now that we have a PermissionsHandler object that has been constructed with all the necessary permissions information- lets ask for the permission! The PermissionsHandler class has methods called needPermissions(), getPermissions(), and requestPermissions(). We can always make sure our permissions are secured before calling any code that would require dangerous permissions. Then once we request the permissions, we will also need to handle the result from the calling activity - but we can just pass this information to the pHandler onject via the method handleResult() like so:
+Now that we have a PermissionsHandler object that has been constructed with all the necessary permissions information- lets ask for the permission! The PermissionsHandler class has methods called needPermissions(), getPermissions(), and requestPermissions(). We can always make sure our permissions are secured before calling any code that would require dangerous permissions. Then once we request the permissions, we will also need to handle the result from the calling activity - but we can just pass this information to the pHandler onject via the method handleResult() like so:<br>
 
 ```
 public class MainActivity extends AppCompatActivity {
@@ -101,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     
- 	//other code removed for brevity
+ 	//other code removed for brevity, and you can place the following if block anywhere you would like. For
+	//example, if you only want the permission to be requested for a button click, use it in the listener. and
+	// if the permission isn't granted it will ask, if it is already approved it will execute the code block
+	//in the executeOnPermissionsGranted() method in the interface implementing object
  	
 	   if(pHandler.needPermissions(pHandler.getPermissions())){
             pHandler.requestPermissions();
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 	
     }
     
-    //pass the same parameters from the onRequestPermissionsResult to the pHandler's handleResult() method
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         pHandler.handleResult(requestCode, permissions, grantResults);
@@ -117,3 +120,14 @@ public class MainActivity extends AppCompatActivity {
 }
 
 ```
+
+This wraps up the Permissions part of this library.
+
+<b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
+<br><br>
+
+Normally we like to capture exceptions in a try/catch block but sometimes we can not always anticipate when exceptions will be thrown. 
+This can result in the app crashing, and when the app crashes from an unhandled exception - no lifecycle methods are called. So,
+if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this like so:
+
+
