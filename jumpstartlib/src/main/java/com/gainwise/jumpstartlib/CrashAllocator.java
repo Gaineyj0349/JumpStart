@@ -26,7 +26,8 @@ public class CrashAllocator {
 
     public CrashAllocator(Crashable crashable){
 
-        this.crashable = crashable; 
+        this.crashable = crashable;
+
         // uncaught exception handler variable initialized
         defaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
 
