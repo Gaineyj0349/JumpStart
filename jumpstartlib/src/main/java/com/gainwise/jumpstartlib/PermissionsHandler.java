@@ -20,6 +20,7 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -43,6 +44,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
     //this method will return true or false if permissions are granted or not
     public boolean needPermissions(String[] permissions){
+        Log.i("PermissionsHandler", "needPermissions called");
         boolean show = true;
         for (int i=0; i< permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(directive.withActivity(), permissions[i]) != PackageManager.PERMISSION_GRANTED) {
@@ -55,6 +57,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
     // this is the method that initiates asking the permissions
     public void requestPermissions(){
+        Log.i("PermissionsHandler", "requestPermissions called");
         for (int i = 0 ; i<  permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(activity, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, permissions, requestCode);
@@ -66,7 +69,7 @@ public class PermissionsHandler extends AppCompatActivity {
     //the calling activity must override the onRequestPermissionsResult and
     //pass it to the PermissionsHandler object's method handleResult
     public void handleResult(int requestCode, String[] permissions, int[] grantResults) {
-
+        Log.i("PermissionsHandler", "handleResult called");
         boolean allGranted = true;
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
