@@ -24,8 +24,9 @@ public class CrashAllocator {
     // once the custom code executes, it will rethrow the exception to the default handler
     //hence the defaultCrashHandler variable
 
-    public CrashAllocator(){
+    public CrashAllocator(Crashable crashable){
 
+        this.crashable = crashable; 
         // uncaught exception handler variable initialized
         defaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
 
