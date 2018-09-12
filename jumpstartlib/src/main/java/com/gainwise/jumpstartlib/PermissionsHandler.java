@@ -49,7 +49,7 @@ public class PermissionsHandler extends AppCompatActivity {
                 show = false;
             }
         }
-        return show;
+        return !show;
     }
 
 
