@@ -136,12 +136,15 @@ public class MainActivity extends AppCompatActivity {
     
  	//other code removed for brevity, and you can place the following if block anywhere you would like. For
 	//example, if you only want the permission to be requested for a button click, use it in the listener. and
-	// if the permission isn't granted it will ask, if it is already approved it will execute the code block
-	//in the executeOnPermissionsGranted() method in the interface implementing object
+	// if the permission isn't granted it will ask, if it is already granted, we shall make an else clause to 
+	//execute the method executeOnPermissionsGranted() method like so. (directive is the name of the variable
+	//in the the api for the incoming interface)
  	
 	   if(pHandler.needPermissions(pHandler.getPermissions())){
             pHandler.requestPermissions();
-        }
+       	   }else{
+                    pHandler.directive.executeOnPermissionGranted();
+                }
 	
     }
     
