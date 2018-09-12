@@ -23,9 +23,10 @@ Add this into your root build.gradle file:<br>
 Add this into your module build.gradle file:<br>
 ```
  allprojects {
-dependencies {
+	dependencies {
 	       implementation 'com.github.Gaineyj0349:JumpStart:8f4af41fd6'
 	}
+}
 ```
 
 <b><U>PERMISSIONS</U></b>:<br>
