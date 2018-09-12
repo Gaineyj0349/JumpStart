@@ -47,7 +47,7 @@ if you need a block of code to execute upon an app crash from an unhandled excep
 
 <b><U>FIRST RUN CODE</U></b>:<br>
 
-This simply makes it easy to execute code upon the first run of the app itself. This uses shared preferences. This is consructed within the onCreate() method of the launcher activity:
+This simply makes it easy to execute code upon the first run of the app itself. This uses shared preferences. This is constructed within the onCreate() method of the launcher activity:
 ```
 
 FirstRunHandler fHandler = new FirstRunHandler(this, new FirstRunHandler.FirstRunner() {
