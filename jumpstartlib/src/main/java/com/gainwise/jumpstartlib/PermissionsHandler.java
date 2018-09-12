@@ -30,14 +30,14 @@ public class PermissionsHandler extends AppCompatActivity {
     //declare variables
     PermissionsDirective directive;
     Activity activity;
-    String permissions[];
+    String permissionsArr[];
     int requestCode;
 
     //constructor to init variables
     public PermissionsHandler(PermissionsDirective directive) {
         this.directive = directive;
         this.activity = directive.withActivity();
-        this.permissions = directive.permissionsToRequest();
+        this.permissionsArr = directive.permissionsToRequest();
         this.requestCode = directive.requestCode();
     }
 
@@ -58,12 +58,8 @@ public class PermissionsHandler extends AppCompatActivity {
     // this is the method that initiates asking the permissions
     public void requestPermissions(){
         Log.i("PermissionsHandler", "requestPermissions called");
-        for (int i = 0 ; i<  permissions.length; i++) {
-            if (ContextCompat.checkSelfPermission(activity, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity, permissions, requestCode);
-            }
+        ActivityCompat.requestPermissions(activity, permissionsArr, requestCode);
         }
-    }
 
     //this is the method that will handle the results of the permissions
     //the calling activity must override the onRequestPermissionsResult and
@@ -71,9 +67,7 @@ public class PermissionsHandler extends AppCompatActivity {
     public void handleResult(int requestCode, String[] permissions, int[] grantResults) {
         Log.i("PermissionsHandler", "handleResult called");
         boolean allGranted = true;
-
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         for (int i = 0; i < permissions.length; i++) {
             if (grantResults.length > 0 && ActivityCompat.checkSelfPermission(activity,
                     permissions[i]) != PackageManager.PERMISSION_GRANTED) {
@@ -118,7 +112,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
     //getter for checking permissions
     public String[] getPermissions() {
-        return permissions;
+        return permissionsArr;
     }
 
 }
