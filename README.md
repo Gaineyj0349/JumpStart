@@ -29,7 +29,7 @@ Add this into your module build.gradle file:<br>
 }
 ```
 
-
+<br><br>
 <b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
 <br><br>
 
