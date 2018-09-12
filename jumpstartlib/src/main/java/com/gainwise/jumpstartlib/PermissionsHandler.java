@@ -33,11 +33,11 @@ public class PermissionsHandler extends AppCompatActivity {
     int requestCode;
 
     //constructor to init variables
-    public PermissionsHandler(PermissionsDirective directive, Activity activity, String[] permissions, int requestCode) {
+    public PermissionsHandler(PermissionsDirective directive) {
         this.directive = directive;
-        this.activity = activity;
-        this.permissions = permissions;
-        this.requestCode = requestCode;
+        this.activity = directive.withActivity();
+        this.permissions = directive.permissionsToRequest();
+        this.requestCode = directive.requestCode();
     }
 
 
