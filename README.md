@@ -34,12 +34,26 @@ Add this into your module build.gradle file:<br>
 <b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
 Normally we like to capture exceptions in a try/catch block but sometimes we can not always anticipate when exceptions will be thrown. 
 This can result in the app crashing, and when the app crashes from an unhandled exception - no lifecycle methods are called. So,
-if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this. It is very important to know that as long as this object is a classwide object (not declared within a lifecycle method) only one is requred per each process. If I have 10 activities, I only need to declare this once in the first activity and it will cover everything in that particular thread. Only when you specifically change processes (either programmatically or in the manifest) then you will need to create another one. Note that even if that first Activity is destroyed it will persist (at least until the android system needs to reclaim that memory):
+if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this. It is very important to know that as long as this object is a classwide object (not declared within a lifecycle method) only one is requred per each process. If I have 10 activities, I only need to declare this once in the first activity and it will cover everything in that particular thread. Only when you specifically change processes (either programmatically or in the manifest) then you will need to create another one. Note that even if that first Activity is destroyed it will persist (at least until the android system needs to reclaim that memory). 
 ```
     CrashAllocator allocator = new CrashAllocator(new CrashAllocator.Crashable() {
         @Override
         public void executeOnCrash() {
-            //custom code here
+	
+		//custom code here
+		
+		//Although simple code like changing SharedPreference values can be done, heavier operations that require Activity will
+		//not be able to execute as it has been destroyed.
+		//However using AlarmManager you can achieve whatever you like. If you want some extravagant code		
+		//to execute, 	put it in its own Broadcast Receiver and use AlarmManager object to trigger it.
+		
+		// As an example - this is how to get the app to restart using AlarmManager.
+                Intent mStartActivity = new Intent(MainActivity.this, MainActivity.class);
+                int mPendingIntentId = 123456;
+                PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, mPendingIntentId, mStartActivity, 													PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager) MainActivity.this.getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                System.exit(0);
         }
     });
 ```
