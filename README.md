@@ -60,7 +60,7 @@ FirstRunHandler fHandler = new FirstRunHandler(this, new FirstRunHandler.FirstRu
     }
 });
 ```
-<br>This wraps up the Unhandled Exceptions part of this library.<br><br>
+<br>This wraps up the First Run part of this library.<br><br>
 
 
 <b><U>PERMISSIONS</U></b>:<br>
