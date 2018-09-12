@@ -24,15 +24,13 @@ Add this into your module build.gradle file:<br>
 ```
  allprojects {
 	dependencies {
-	       implementation 'com.github.Gaineyj0349:JumpStart:8f4af41fd6'
+	       implementation 'com.github.Gaineyj0349:JumpStart:16433a0036'
 	}
 }
 ```
 
 <br><br>
 <b><U>UNHANDLED EXCEPTIONS</U></b>:<br>
-<br><br>
-
 Normally we like to capture exceptions in a try/catch block but sometimes we can not always anticipate when exceptions will be thrown. 
 This can result in the app crashing, and when the app crashes from an unhandled exception - no lifecycle methods are called. So,
 if you need a block of code to execute upon an app crash from an unhandled exception, we can use the CrashAllocator class and Crashable interface within this library to accomplish this. It is very important to know that as long as this object is a classwide object (not declared within a lifecycle method) only one is requred per each process. If I have 10 activities, I only need to declare this once in the first activity and it will cover everything in that particular thread. Only when you specifically change processes (either programmatically or in the manifest) then you will need to create another one. Note that even if that first Activity is destroyed it will persist (at least until the android system needs to reclaim that memory):
@@ -48,9 +46,8 @@ if you need a block of code to execute upon an app crash from an unhandled excep
 
 
 <b><U>FIRST RUN CODE</U></b>:<br>
-<br><br>
 
-This simply makes it easy to execute code upon the first run of the app itself. This uses shared preferences. This is consructed within the onCreate() method of the launcher activity:
+This simply makes it easy to execute code upon the first run of the app itself. This uses shared preferences. This is constructed within the onCreate() method of the launcher activity:
 ```
 
 FirstRunHandler fHandler = new FirstRunHandler(this, new FirstRunHandler.FirstRunner() {
