@@ -42,7 +42,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
 
     //this method will return true or false if permissions are granted or not
-    boolean needPermissions(String[] permissions){
+    public boolean needPermissions(String[] permissions){
         boolean show = true;
         for (int i=0; i< permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(directive.withActivity(), permissions[i]) != PackageManager.PERMISSION_GRANTED) {
@@ -54,7 +54,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
 
     // this is the method that initiates asking the permissions
-    void requestPermissions(){
+    public void requestPermissions(){
         for (int i = 0 ; i<  permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(activity, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, permissions, requestCode);
@@ -65,7 +65,7 @@ public class PermissionsHandler extends AppCompatActivity {
     //this is the method that will handle the results of the permissions
     //the calling activity must override the onRequestPermissionsResult and
     //pass it to the PermissionsHandler object's method handleResult
-    void handleResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void handleResult(int requestCode, String[] permissions, int[] grantResults) {
 
         boolean allGranted = true;
 
@@ -92,7 +92,7 @@ public class PermissionsHandler extends AppCompatActivity {
 
 
     //this is a bonus method to send the user to the OS settings of your application
-    void sendToSettings(Context context) {
+    public void sendToSettings(Context context) {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", context.getPackageName(), null);
