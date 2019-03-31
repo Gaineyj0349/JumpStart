@@ -1,5 +1,6 @@
 # JumpStart
 
+Licensed with [MIT license](LICENSE).
 
 <b>MIN SDK: 17</b><br>
 <b>Written in Java - can be used in Kotlin and Java based Android projects</b><br><br>
